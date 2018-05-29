@@ -13,6 +13,9 @@ function loadContentById(selector,direccion) {
 function id(tag) {
 	return document.getElementById(tag);
 }
+function elementsName(name) {
+	return document.getElementsByName(name);
+}
 function className(name) {
 	return document.getElementsByClassName(name);
 }
@@ -105,5 +108,38 @@ function checarCheckbox(nameClass) {
 	}
 	for (var i = 0; i < checkbox.length; i++) {
 		checkbox[i].required = flag;
+	}
+}
+function agregarFile(contenedorName) {
+	var rowInput = document.createElement('tr');
+	var fileExtra = document.createElement('input');
+	var agregar = document.createElement('img');
+	var td1 = document.createElement('td');
+	var td2 = document.createElement('td');
+	var td3 = document.createElement('td');
+	var td4 = document.createElement('td');
+	var contenedor = id(contenedorName);
+	fileExtra.type = 'file';
+	fileExtra.name = 'archivo';
+	fileExtra.accept = 'file_extension|audio/*|video/*|image/*|media_type';
+	agregar.src = 'img/agregar.png';
+	agregar.setAttribute("onclick","agregarFile('"+ contenedorName +"')");
+	agregar.classList.add('botonImg');
+	td1.appendChild(fileExtra);
+	td2.appendChild(document.createElement('p'));
+	td3.appendChild(document.createElement('p'));
+	td4.appendChild(agregar);
+	rowInput.appendChild(td1);
+	rowInput.appendChild(td2);
+	rowInput.appendChild(td3);
+	rowInput.appendChild(td4);
+	contenedor.appendChild(rowInput);
+}
+function prueba(name) {
+	var elementos = elementsName(name);
+	for (var i = elementos.length - 1; i >= 0; i--) {
+		console.log(elementos[i].name);
+		console.log(elementos[i].value);
+		console.log(elementos[i].mozFullPath);
 	}
 }
